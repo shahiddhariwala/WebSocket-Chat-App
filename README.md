@@ -1,5 +1,5 @@
 # WebSocket-Chat-App
-Building a Node.js WebSocket Chat App with Socket.io and React
+WebSocket Chat App with Socket.io, Node, Express and React
 # Chat
 !["Chat"](https://github.com/shahiddhariwala/WebSocket-Chat-App/blob/master/client/src/Screenshot/socketChat.png)
 
