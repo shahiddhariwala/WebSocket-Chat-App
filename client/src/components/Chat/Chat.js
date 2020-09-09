@@ -5,11 +5,15 @@ import './Chat.css';
 import _ from "lodash";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
+import Messages from '../Messages/Messages';
+import TextContainer from '../TextContainer/TextContainer';
 let socket;
 
 const Chat = (props) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    
+  const [users, setUsers] = useState('');
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
 
@@ -40,6 +44,11 @@ const Chat = (props) => {
             tempMessages.push(message);
             setMessages(tempMessages)
         });
+
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+          });
+
     }, [messages]);
 
     // function for sending message
@@ -58,8 +67,10 @@ const Chat = (props) => {
             <div className="outerContainer">
                 <div className="container">
                     <InfoBar room={room} />
+                    <Messages messages={messages} name={name} />
                     <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
                 </div>
+                <TextContainer users={users}/>
             </div>
         </>
     );
