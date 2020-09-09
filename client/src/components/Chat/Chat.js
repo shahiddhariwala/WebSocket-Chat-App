@@ -16,8 +16,16 @@ const Chat = (props) => {
         setRoom(room);
 
         socket = io(ENDPOINT);
-        socket.emit('join', { name, room });
+        socket.emit('join', { name, room }, () => {
 
+        });
+
+
+        return () =>
+        {
+            socket.emit('disconnect');
+            socket.off();
+        }
     }, [ENDPOINT, props.location.search]);
     return (
         <>
